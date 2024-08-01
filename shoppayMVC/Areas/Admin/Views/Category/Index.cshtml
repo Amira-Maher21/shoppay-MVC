@@ -1,0 +1,43 @@
+﻿@model List<Category>
+
+@{
+    ViewBag.pageTitel = "Categories Managment";
+    ViewBag.CardTitel = " Categories";
+    Layout = "~/Views/Shared/_Dashporde.cshtml";
+}
+
+
+ 
+<div>
+    <a class="btn btn-primary" href="/Admin/Category/Create">NewCategory</a>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>CategoryTime</th>
+            <th>Description</th>
+            <th>Actions</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Category item in Model)
+        {
+            <tr>
+                <td>@item.CategoryName</td>
+                <td>@item.CategoryTime</td>
+                <td>@item.Description</td>
+                <td>
+                    <a class=" btn btn-success " href="/Admin/Category/EditeCategory/@item.CategoryId">Edit</a>
+                    <a class=" btn btn-danger " href="/Admin/Category/DeleteCategory/@item.CategoryId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

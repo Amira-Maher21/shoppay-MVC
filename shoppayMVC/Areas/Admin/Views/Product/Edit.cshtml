@@ -1,0 +1,116 @@
+﻿@model ProductDto;
+
+@{
+    ViewBag.pageTitel = "Product Managment";
+    ViewBag.CardTitel = "Edit product";
+    Layout = "~/Views/Shared/_Dashporde.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<body>
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="@Model.product.productId" />
+                <input type="hidden" asp-for="@Model.product.Image" />
+
+
+  
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+
+                    <label asp-for="@Model.product.productName" class="control-label"></label>
+
+                    <input asp-for="@Model.product.productName" class="form-control" />
+
+                    <span asp-validation-for="@Model.product.productName" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label asp-for="@Model.product.productDescription" class="control-label"></label>
+
+                    <input asp-for="@Model.product.productDescription" class="form-control" />
+
+                    <span asp-validation for="productDescription" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label asp-for="product.price" class="control-label"></label>
+
+                    <input asp-for="product.price" class="form-control" />
+
+                    <span asp-validation-for="product.price" class="text-danger"></span>
+                </div>
+
+               @*  <div class="form-group">
+
+                    <label asp-for="@Model.product.Image" class="control-label"></label>
+
+                    <input type="file" name="file" id="imgfile" class="form-control" />
+
+
+                </div> *@
+
+
+                    @* <div class="form-group">
+                        <label asp-for="@Model.product.Image" class="control-label"></label>
+                        @if (!string.IsNullOrEmpty(@Model.product.Image))
+                        {
+                            <div>
+                                <img src="@Url.Content("~/" + @Model.product.Image)" alt="Current Image" style="max-height: 200px;" />
+                            </div>
+                        }
+                        <input type="file" name="file" id="imgfile" class="form-control" />
+                    </div> *@
+
+                <div class="form-group">
+
+                    <label asp-for="@Model.product.CategoryId" class="control-label"></label>
+
+                    <select asp-for="@Model.product.CategoryId" class="form-control" asp-items="@Model.CategoryList">
+                        <option disabled selected>Select Category</option>
+                    </select>
+
+                 </div>
+
+                <div>
+                    <input type="file" name="file" />
+                </div>
+                <button type="submit">Update</button>
+
+               @*  <div class="form-group">
+                    <input type="submit" value="Edit" class="btn btn-success" />
+                </div> *@
+
+            </form>
+        </div>
+        <div class="col-md-4">
+            <d class="container">
+            <img src="~/@Model.product.Image"/>
+            </div>
+
+        </div>
+     
+
+
+
+
+ 
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+</body>
+</html>
+
